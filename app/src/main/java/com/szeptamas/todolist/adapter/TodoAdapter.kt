@@ -1,4 +1,4 @@
-package adapter
+package com.szeptamas.todolist.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.szeptamas.todolist.R
-import data.Todo
+import com.szeptamas.todolist.data.Todo
 import kotlinx.android.synthetic.main.todo_row.view.*
 
 class TodoAdapter : RecyclerView.Adapter<TodoAdapter.ViewHolder> {
@@ -37,6 +37,11 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         holder.tvDate.text = todoItem.createDate
         holder.cbDone.isChecked = todoItem.done
         holder.cbDone.text = todoItem.todoText
+    }
+
+    fun addTodo(todo: Todo) {
+        todoItems.add(todo)
+        notifyItemInserted(todoItems.lastIndex)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
